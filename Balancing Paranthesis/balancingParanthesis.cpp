@@ -29,7 +29,7 @@ int main() {
 
 
     if(stk.empty()) cout << "Yes" ;
-    else cout<< stk.top() << "No" ;
+    else cout << "No" ;
 
     return 0 ;
 }
