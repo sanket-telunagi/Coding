@@ -1,0 +1,1 @@
+{"name":"Local: Monk","url":"/media/kaliuser/DATA/DOCUMENTS/SANKET/C-C++/C++_kali/Monk.cpp","tests":[{"id":1669897901631,"input":"1\n5 3\n2 1 7 4 2","output":"14"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/media/kaliuser/DATA/DOCUMENTS/SANKET/C-C++/C++_kali/Monk.cpp","group":"local","local":true}
