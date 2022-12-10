@@ -1,7 +1,7 @@
 /*
     generate all the possible subsets :
     for an set with n elements :     
-        possible subsets are : 2^n
+    possible subsets are : 2^n
 */
 
 #include <bits/stdc++.h>
