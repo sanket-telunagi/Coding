@@ -12,10 +12,10 @@
 using namespace std ;
 
 int BinarySearch(int *arr,int n, int key) {
-    int lo = 0 ;
+    int lo = 0 ; // start position
     int hi =  n - 1; // last position
     int mid ;
-    while (hi - lo > 1) {
+    while (hi - lo > 1) { // never runs in a infinite loop
         mid = (lo + hi) / 2 ;
         if (arr[mid] < key) {
             lo = mid + 1 ;
@@ -30,8 +30,6 @@ int BinarySearch(int *arr,int n, int key) {
 }
 
 int main() {
-    
-
     int n ,k;
     cin >> n >> k;
     int arr[n] ;
