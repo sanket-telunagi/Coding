@@ -9,67 +9,104 @@
 using namespace std ;
 
 
-void DFS(int i , int j,vector<vector<int>> & matrix,int initial, int & ct) {
-    int m = matrix.size() ;
-    int n = matrix[0].size() ;
+// int DFS(int i , int j,vector<vector<int>> & matrix,int initial) {
+//     int m = matrix.size() ;
+//     int n = matrix[0].size() ;
 
-    if ( i < 0 || j < 0 || i >= n || j >= m) return;
-    if (matrix[i][j] <= initial) return ;
+//     if ( i < 0 || j < 0 || i >= n || j >= m || matrix[i][j] <= initial)  return 0;
 
-    if (matrix[i][j] > initial) {
-        initial = matrix[i][j] ;
-        ct++ ;
-        // cout << initial << " " ;
+//     int maxlength = 0 ;
 
-        // Go up
-        DFS(i , j-1, matrix, initial, ct) ;
-
-        // Go down
-        DFS(i , j+1, matrix, initial, ct) ;
-
-        // Go right
-        DFS(i+1 , j, matrix, initial, ct) ;
-
-        // Go left
-        DFS(i-1 , j, matrix, initial, ct ) ;
-        // cout << endl ;
-    }
-
-}
-
-int longestIncreasingPath(vector<vector<int>> & matrix) {
-    // int ct = 0 ;
-    int ans = 0 ;
-    for (int i = 0; i < matrix.size(); i++)
-    {
-        int len ;
-        for (int j = 0; j < matrix[i].size(); j++)
-        {
-            DFS(i,j,matrix, 0, len) ;
-            ans = max(ans, *len) ;
-        }
-  
-    }
     
-    return ans ;
+//         // cout << initial << " " ;
+//         maxlength = max({
+//         // Go up
+//         DFS(i , j-1, matrix, initial) ,
+
+//         // Go down
+//         DFS(i , j+1, matrix, initial) ,
+
+//         DFS(i+1 , j, matrix, initial) ,
+
+//         DFS(i-1 , j, matrix, initial) }) ;
+//         // cout << endl ;
+    
+//         return maxlength + 1 ;
+
+// }
+
+// int longestIncreasingPath(vector<vector<int>> & matrix) {
+//     // int ct = 0 ;
+//     int ans = 0 ;
+//     for (int i = 0; i < matrix.size(); i++)
+//     {
+//         int len ;
+//         for (int j = 0; j < matrix[i].size(); j++)
+//         {
+//              ;
+//             ans = max(ans, DFS(i,j,matrix, 0)) ;
+//         }
+  
+//     }
+    
+//     return ans ;
+// }
+
+// int main()
+// {
+//     int n , m ;
+//     cin >> n >> m ;
+//     vector<vector<int>> matrix ;
+//     for (int i = 0; i < m; i++)
+//     {
+//         vector<int> temp ;
+//         for (int j = 0; j < n; j++)
+//         {
+//             int x ;
+//             cin >> x ;
+//             temp.push_back(x) ;
+//         }
+//         matrix.push_back(temp) ;
+//     }
+//     cout << longestIncreasingPath(matrix) ;
+//     return 0 ;
+// }
+
+#include <iostream>
+#include <algorithm>
+
+const int N = 10;
+
+int matrix[N][N] = {{1, 2, 3},
+                    {4, 5, 6},
+                    {7, 8, 9}};
+
+int findLongestPath(int matrix[][N], int x, int y, int prev)
+{
+    // base case: if the current position is out of bounds or the value of the element at the current position is not greater than prev, return 0
+    if (x < 0 || y < 0 || x >= N || y >= N || matrix[x][y] <= prev)
+        return 0;
+
+    int maxLength = 0;
+    // try moving to the left, right, up, and down positions
+    maxLength = std::max({findLongestPath(matrix, x - 1, y, matrix[x][y]),
+                          findLongestPath(matrix, x + 1, y, matrix[x][y]),
+                          findLongestPath(matrix, x, y - 1, matrix[x][y]),
+                          findLongestPath(matrix, x, y + 1, matrix[x][y])});
+
+    return maxLength + 1;
 }
 
 int main()
 {
-    int n , m ;
-    cin >> n >> m ;
-    vector<vector<int>> matrix ;
-    for (int i = 0; i < m; i++)
+    int maxLength = 0;
+    for (int i = 0; i < N; i++)
     {
-        vector<int> temp ;
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < N; j++)
         {
-            int x ;
-            cin >> x ;
-            temp.push_back(x) ;
+            maxLength = std::max(maxLength, findLongestPath(matrix, i, j, INT_MIN));
         }
-        matrix.push_back(temp) ;
     }
-    cout << longestIncreasingPath(matrix) ;
-    return 0 ;
+    std::cout << maxLength << std::endl;
+    return 0;
 }

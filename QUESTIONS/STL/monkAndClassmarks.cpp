@@ -1,31 +1,25 @@
-// Solving hackerEarths monk and class marks problem by sorting
-
 #include <bits/stdc++.h>
 #include <iostream>
 using namespace std ;
 
-bool cmp(pair<string,int> &a , pair<string,int> &b){
-    if (a.second == b.second){
-        return a.first < b.first ;
-    }
-    return a.second > b.second ;
-}
-
 int main() {
-    int n ;
-    cin >> n ;
-    vector<pair<string,int>> result(n) ;
-    for (int i = 0; i < n; i++)
+    int t ;
+    cin >> t ;
+    map<int,multiset<string>> result ;
+    while (t--)
     {
-        cin >> result[i].first >> result[i].second ;
+        int marks ;
+        string names ;
+        cin >> names >> marks ;
+        result[-1*marks].insert(names) ;  // for setting the elements in decreasing order : negative numbers logic
     }
-
-    sort(result.begin(),result.end(),cmp) ;
-    for (int i = 0; i < n; i++)
-    {
-        cout << result[i].first << " " << result[i].second << endl ;
-    }
+    // for (auto it = --result.end(); it !=result.begin() ; --it) {
+    //     auto &names = (*it).second ;
+    //     for(auto name : names){
+    //         cout << name << " " << it->first << endl ;
+    //     }
+    // }
+    // auto cur = --result.end() ;
+    // while (true)
+    // {
     
-    
-    return 0 ;
-}
