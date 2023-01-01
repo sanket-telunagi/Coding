@@ -33,14 +33,16 @@ int main() {
     cin >> n ;
     vector<int> empty ;
     gen(empty,n) ;
-    cout << paths.size() << endl ;
+    // cout << paths.size() << endl ;
 
-    for(auto it : paths){
-        for(auto e : it){
-            cout << e << " " ;
-        }
-        cout << endl ;
-    }
+    // for(auto it : paths){
+    //     for(auto e : it){
+    //         cout << e << " " ;
+    //     }
+    //     cout << endl ;
+    // }
+
+    cout << cnt << endl ;
 
     return 0 ;
 }
