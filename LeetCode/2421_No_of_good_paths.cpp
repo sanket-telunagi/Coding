@@ -26,7 +26,7 @@ void printVV(unordered_map<int, vector<int>> & arr) {
 
 
 
-void DFS(int vertex , int par , int start, vector<int> & vals, vector<vector<int>> & G, vector<int> & path, unordered_map<int,vector<int>> & paths) {
+void DFS(int vertex , int par , int start, vector<int> & vals, vector<vector<int>> & G, vector<int> & path, map<pair<int,int>,vector<int>> & paths) {
 
     path.push_back(vertex) ;
     for (int child : G[vertex]) {
@@ -41,9 +41,7 @@ void DFS(int vertex , int par , int start, vector<int> & vals, vector<vector<int
             if (vals[child] == vals[start]) {
                 // store unique paths
                 int temp = start + child ;
-                if (paths.find(temp) == paths.end()) {
-                    paths[temp] = path ;
-                }
+                paths[{start, child}] = path ;
             }
             path.pop_back() ;
             continue ;
@@ -59,7 +57,8 @@ void DFS(int vertex , int par , int start, vector<int> & vals, vector<vector<int
 
 int numberOfGoodPaths(vector<int>& vals, vector<vector<int>>& edges) {
 
-    unordered_map<int,vector<int>> paths ;
+    // unordered_map<int,vector<int>> paths ;
+    map<pair<int,int>, vector<int>> paths ;
     vector<vector<int>> G (vals.size()) ;
     vector<int> path ;
 
@@ -74,6 +73,7 @@ int numberOfGoodPaths(vector<int>& vals, vector<vector<int>>& edges) {
         DFS(i, -1, i, vals, G, path, paths) ;
     }
 
+    printG(G) ;
 
     int ans = vals.size() + paths.size(); 
     return ans ;
