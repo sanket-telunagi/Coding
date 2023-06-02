@@ -2,6 +2,12 @@
 #include <iostream>
 using namespace std ;
 
+/* 
+    The maximum element with be included definately 
+    
+
+*/
+
 int main()
 {
     int t;
@@ -10,28 +16,24 @@ int main()
         int n ;
         cin >> n ;
         // int arr[n] ;
-        int lo = 0, hi = INT_MIN ;
-        long long ans ;
+      
+        vector<long long > nums(n) ;
         for (int i = 0; i < n; i++)
         {
             // cin >> arr[i] ;
-            int x ;
-            cin >> x ;
+         
 
-            if (x > hi) {
-                hi = x ;
-            }
-            if (x > lo && x < hi) {
-                lo = x ;
-            }
+            cin >> nums [i] ;
+
         }
-        if (lo==0) {
-            ans = round(pow(hi,n)) ;
-            cout << ans << endl ;
-        } else {
-            ans = lo * 1LL * hi ;
-            cout << ans << endl ;
+        long long res = 0 ;
+        for (int i = 0; i < n - 1; i++)
+        {
+            res = max(res, nums[i] * nums[i+1]* 1LL) ;
         }
+    cout << res << endl ;
+        
+        
     }
     return 0 ;
 }
