@@ -22,6 +22,6 @@ public class LeetCode_70_climb_stairs {
         int n = sc.nextInt() ;
         Solution s = new Solution() ;
         System.out.println(s.climbStairs(n)) ;
-
+        sc.close() ;
     }
 }
