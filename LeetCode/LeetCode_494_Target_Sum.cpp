@@ -31,21 +31,47 @@ using namespace std ;
 //     nums[index] *= (-1) ;
 // }
 
-int genSum(vector<int> & nums, int & target) {
-    int ct = 0 ;
-    for(int i = 0; i < nums.size(); i++) {
-        if(accumulate(nums.begin(), nums.end(), 0) == target) ct++ ;
-        nums[i] *= (-1) ;
-        if(accumulate(nums.begin(), nums.end(), 0) == target) ct++ ;
-        nums[i] *= (-1) ;
+// int genSum(vector<int> & nums, int & target) {
+//     int ct = 0 ;
+//     for(int i = 0; i < nums.size(); i++) {
+//         if(accumulate(nums.begin(), nums.end(), 0) == target) ct++ ;
+//         nums[i] *= (-1) ;
+//         if(accumulate(nums.begin(), nums.end(), 0) == target) ct++ ;
+//         nums[i] *= (-1) ;
+//     }
+//     return ct ;
+// }
+
+// Find total number of sets with given sum 
+
+void genSum(int index ,int curr_sum , int & res,vector<int> & subset,int target , vector<int> nums) {
+    if (index < 0) return ;
+    if (curr_sum == target) {
+        res++ ;
+        for (int & it : subset) {
+            cout << it << " " ;
+        }
+        cout << endl ;
     }
-    return ct ;
+
+    // not taken current number 
+    genSum(index -1, curr_sum, res, subset, target, nums) ;
+
+    // taken given number 
+    curr_sum += nums[index] ;
+    subset.push_back(nums[index]) ;
+    genSum(index -1, curr_sum, res, subset, target, nums) ;
+    subset.pop_back() ;
+    curr_sum -= nums[index] ;
+
 }
 
 int findTargetSumWays(vector<int>& nums, int target) {
     // genSum(nums, target, ans) ;
-
-    return genSum(nums, target) ;
+    vector<int> subset ;
+    int res = 0 ;
+    genSum(nums.size() - 1,0, res, subset, target, nums) ;
+    return res ;
 }
 
 int main()
