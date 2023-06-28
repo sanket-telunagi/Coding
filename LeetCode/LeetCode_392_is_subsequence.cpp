@@ -29,11 +29,37 @@ int help(int i , int j, string & s, string & t) {
     return ans ;
 }
 
-bool isSubsequence(string s, string t) {
+bool isSubsequence3(string s, string t) {
     int ans = help(s.length(), t.length(), s, t) ;
     cout << ans << endl ;
     if (ans == s.length()) return true  ;
     return false ;
+}
+
+
+/*
+
+    Ans : go from first index of 's' 
+          increase the count if it is the same character in t
+          and decreament n 
+          if n = 0 : whole 's' is in 't'
+*/
+bool isSubsequence(string s , string t) {
+    int res = false ;
+    int n = s.length() ;
+    int ct = 0 ;
+    for (char ch : t) {
+        if (ch == s[ct]) {
+            ct++ ;
+            n-- ;
+        }
+    }
+    // cout << n << endl ;
+    if (n == 0) {
+        res = true ;
+    }
+
+    return res ;
 }
 
 int main()
