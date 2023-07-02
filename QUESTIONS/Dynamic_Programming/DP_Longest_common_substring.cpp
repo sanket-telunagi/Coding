@@ -60,15 +60,15 @@ int LCSubstring_dp(string s1, string s2) {
     }
 
     // debug table
-    for (int i = 0; i <= n; i++)
-    {
-        for (int j = 0; j <= m; j++)
-        {
-            cout << hsh[i][j] << " " ;
-        }
-        cout << endl ;
+    // for (int i = 0; i <= n; i++)
+    // {
+    //     for (int j = 0; j <= m; j++)
+    //     {
+    //         cout << hsh[i][j] << " " ;
+    //     }
+    //     cout << endl ;
         
-    }
+    // }
     
 
     // return hsh[n][m] ;

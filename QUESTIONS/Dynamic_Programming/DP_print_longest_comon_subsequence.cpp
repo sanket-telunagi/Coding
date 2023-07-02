@@ -78,7 +78,7 @@ string LCS_dp(string s1, string s2) {
             // } else {
             //     i-- ;
             // }
-            
+        
             // for common string
             if (hsh[i][j-1] < hsh[i][j]) {
                 i-- ;
