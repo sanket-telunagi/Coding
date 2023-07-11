@@ -8,26 +8,17 @@ struct Node{
     Node * right ;
 } ;
 
-
-unordered_map<int, vector<int>> g ;
-
 void inorder (Node * root, Node * par, unordered_map<int, vector<int>> & mp){
     if (root == NULL) return ;
-    // cout << root->val << endl ;
 
-    // Node * n1 = root ;
-    // int v = root->left->val ;
     if (par != nullptr) {
         mp[par->val].push_back(root->val) ;
         mp[root->val].push_back(par->val) ;
     }
-    // v = root->right->val;
-    // g[root->val].push_back(v) ;
 
     inorder(root->left, root, mp) ;
     inorder(root->right, root, mp) ;
-   
-    // mp[root->val].push_back(root->right->val) ;
+
 }
 
 Node * newNode(int val) {
@@ -40,8 +31,7 @@ Node * newNode(int val) {
 
 int main()
 {
-    
-
+    // Tree 1 
     Node * root = newNode(3);
     
     root->left = newNode(5) ;
@@ -57,6 +47,10 @@ int main()
     unordered_map<int, vector<int>> mp ;
     inorder(root, nullptr, mp) ;
 
+    // Tree 2
+    // Node * root = newNode(1) ;
+
+
     for (auto & it : mp) {
         cout << it.first << " : " ;
         for (auto i : it.second) {
@@ -65,5 +59,42 @@ int main()
         cout << endl ;
     }
 
+    // problem input 
+    int target , k ;
+    cin >> target >> k ; 
+    int vis[mp.size() + 1] = {0} ;
+    int lev[mp.size() + 1] = {0} ;
+    vector<int> res ;
+    queue<int> q ;
+    q.push(target) ;
+
+    while (!q.empty()) {
+        int v = q.front() ;
+        q.pop() ;
+        vis[v] = true ;
+        for (int child : mp[v]) {
+            if (!vis[child]) {
+
+            q.push(child) ;
+            lev[child] = lev[v] + 1;
+            }
+        }
+       
+    }
+
+    while (!q.empty()) {
+        cout << q.front() << " " ;
+        q.pop() ;
+    }
+
+    for(int i = 0 ; i < mp.size() + 1; i++) {
+        if (lev[i] == k) res.push_back(i) ;
+        cout << lev[i] << " " ;
+    }
+    cout << endl ;
+
+    for (auto it : res) {
+        cout << it << " " ;
+    }
     return 0 ;
 }
