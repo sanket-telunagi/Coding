@@ -17,19 +17,26 @@ int main()
         sort(nums.begin(), nums.end()) ;
         int i = 0 , ct = 0 ,
             isDis = false ;;
-        while (p >= 0 && n > 0)  // loop over all the items provided the ramining money is >= p
-        {   
-            if (p - nums[i] >= 0) {
+
+            /*
+                Suppose k=3 and a[i] is 7. If we do k>=a[i]/2, it will return true as since the values are integers, 
+                a[i]/2 = 3 and not 3.5 as it should. 
+                Hence, we add 1 to a[i] before dividing so that we get 4 in the above example and it returns false.
+            */
+        for (int i = 0; i < n; i++)
+        {
+            if ( p - nums[i] >= 0) {
                 p -= nums[i] ;
                 ct++ ;
-            } else if (!isDis && (p - nums[i] / 2 >= 0)) {
-                p -= nums[i] / 2 ;
-                ct++ ;
-                isDis != isDis ;
+            } else {
+                if (p - ((nums[i] + 1) / 2) >= 0) {
+                    p -= nums[i] / 2 ;
+                    ct++ ;
+                    break ;
+                }
             }
-            i++ ;
-            n-- ;
         }
+        
         
         cout << ct << endl ;
     }

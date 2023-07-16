@@ -23,7 +23,7 @@ bool isEnough(vector<int> & cookies, int k , int mid) {
     return true ;
 }
 
-int distributeCookies(vector<int>& cookies, int k) {
+int distributeCookies1(vector<int>& cookies, int k) {
     int n = cookies.size() ;
     
     // problem is same as book allocation problem
@@ -47,6 +47,52 @@ int distributeCookies(vector<int>& cookies, int k) {
         }
     }
     return lo < hi ? lo : hi ;
+}
+
+// bool isPossible(int mid, int k , vector<int> & nums) {
+//     int cookies = 0,
+//         n = nums.size() ;
+
+//     for (int i = 0; i < n; i++)
+//     {
+     
+//         if (nums[i] > mid) return false ;
+
+//         if (cookies + nums[i] > mid) {
+//             k-- ;
+//             cookies = nums[i] ;
+//             if (k == 0) return false ;
+//         }
+//         cookies += nums[i] ;
+//     }
+
+//     return true ;
+    
+// }
+
+int backTrack(int index, vector<int> & kids, vector<int> & nums) {
+    int res = INT_MAX ;
+    if (index >= nums.size()) {
+        res = min(res, *max_element(kids.begin(), kids.end())) ; // get the minimum unfaireness
+        return res ;
+    }
+
+    for (int i = 0; i < kids.size(); i++)
+    {
+        kids[i] += nums[index] ;
+        res = min(res, backTrack(index + 1, kids, nums)) ;
+        kids[i] -= nums[index] ;
+    }
+    
+
+    return res ;
+}
+
+int distributeCookies (vector<int> & nums, int k) {
+    int n = nums.size() ;
+    vector<int> kids(k, 0) ; // create total number of kids 
+    return backTrack(0, kids, nums) ;
+
 }
 
 int main()
