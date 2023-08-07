@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std ;
 
-int solve(vector<int> & nums) {
+int missingnumber(vector<int> & nums) {
     int n = nums.size() ;
 
     // int sum = n * (n + 1) / 2 ;
@@ -46,7 +46,7 @@ int main()
         cin >> nums[i] ;
     }
 
-    cout << solve(nums) << endl ;
+    cout << missingnumber(nums) << endl ;
     
     return 0 ;
 }
