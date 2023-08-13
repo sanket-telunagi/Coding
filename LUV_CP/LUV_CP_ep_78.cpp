@@ -15,7 +15,7 @@ using namespace std ;
 void BFS(vector<vector<int>> & graph , vector<bool> & visited, vector<int> & level, vector<int> & order) {
     // queue of node
     queue<int> q ;
-    q.push(1) ; // push root
+    q.push(0) ; // push root
 
 
     // rul loop till the queue becomes empty
