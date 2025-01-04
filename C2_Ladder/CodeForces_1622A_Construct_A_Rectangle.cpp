@@ -25,7 +25,7 @@ int main()
     cin >> t;
     while (t--)
     {
-        vector<int> nums(3, 0);
+        vector<int> nums(4, 0);
         for (int i = 0; i < 3; i++)
         {
             cin >> nums[i];
